@@ -1,4 +1,4 @@
-name: Events Demo 1
+name: Events Activity Types & Filters
 #Adding pull_request with Activity Types. This workflow runs only a pull request is opened
 #Adding workflow_dispatch to manually trigger this workflow
 #This workflow runs if a pull request is opened and targets one of these branches:
