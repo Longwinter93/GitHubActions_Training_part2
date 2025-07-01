@@ -1,5 +1,10 @@
 name: Events Demo 1
-on: ...
+#Adding pull_request with Activity Types. This workflow runs only a pull request is opened
+#Adding workflow_dispatch to manually trigger this workflow
+on:
+  pull_request:
+    types: opened
+  workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
