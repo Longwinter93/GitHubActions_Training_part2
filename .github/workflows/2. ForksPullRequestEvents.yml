@@ -1,10 +1,20 @@
-name: Events Demo 1
-#Adding pull_request with Activity Types. This workflow runs only a pull request is opened
-#Adding workflow_dispatch to manually trigger this workflow
+name: Events Forks & Pull Requests
 on:
   pull_request:
-    types: opened
+    types: 
+      - opened
+    branches: 
+      - main
+      - 'dev-*' 
+      - 'feat/**'
   workflow_dispatch:
+  push:
+    branches: 
+      - main
+      - 'dev-*' 
+      - 'feat/**'
+    paths-ignore:
+      - '.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
