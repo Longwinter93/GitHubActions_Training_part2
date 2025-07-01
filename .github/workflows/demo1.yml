@@ -1,10 +1,30 @@
 name: Events Demo 1
 #Adding pull_request with Activity Types. This workflow runs only a pull request is opened
 #Adding workflow_dispatch to manually trigger this workflow
+#This workflow runs if a pull request is opened and targets one of these branches:
 on:
   pull_request:
-    types: opened
+    types: 
+      - opened
+    branches: 
+      - main
+      - 'dev-*' 
+      - 'feat/**'
   workflow_dispatch:
+#Event Filter - Branches Filters:
+#We want to run this workflow if a push targets a main branch - 
+#'dev-*' - a workflow runs for all branches that start with dev- for example: dev-new, dev-this-is-new
+#'feat/**' a workflow runs for all branches that start with feat/** for example: feat/new feat/new/button
+  push:
+    branches: 
+      - main
+      - 'dev-*' 
+      - 'feat/**'
+#paths-ignore: We intend to run this workflow when we push to one of these branches only if we did not change a file in a .github\workflows folder
+#Even if we change other files as long as  at least one file in this folder changed, this workflow will not be triggered
+    paths-ignore:
+      - '.github/workflows/*'
+#paths: ... this workflow would be only triggered it at least one file changed in this folder path and we target one of these branches
 jobs:
   deploy:
     runs-on: ubuntu-latest
